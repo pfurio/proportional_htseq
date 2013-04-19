@@ -39,5 +39,3 @@ Usage: python htseq.py [options] \<mandatory>
                  bam/sam file to read
         -g, --gtf:
                  gtf file
-
-    07/03/2013. Pedro Furió.
