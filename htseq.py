@@ -114,24 +114,12 @@ def usage():
     print "\t-g, --gtf:\n\t\t gtf file"
     print "\n07/03/2013. Pedro Furió Tarí.\n"
 
-def temporalFiles(filename, destiny):
-    # This function will write in a file all the intermediate files that has been created to compute the final htseq
-    # taking the multihits into account
-    fileaux = destiny + "auxiliar_files.txt"
-    if os.path.isfile(fileaux):
-        file_clean = open(destiny + "auxiliar_files.txt", 'a')
-    else:
-        file_clean = open(destiny + "auxiliar_files.txt", 'w')
-    file_clean.write(destiny + filename + " \n")
-    file_clean.close()
-
 def bam2sam(bam, destiny):
     global temporaryFiles
     
     filename = bam.split("/")[-1].split(".")[-2]
     os.system("samtools view -h " + bam + " > " + destiny + filename + ".sam")
 
-    #temporalFiles(destiny + filename + ".sam", destiny)
     temporaryFiles.append(destiny + filename + ".sam")
     
     return destiny + filename + ".sam"
@@ -143,7 +131,6 @@ def sortSam(sam, destiny):
     filename = sam.split("/")[-1].split(".")[-2]
     os.system("samtools sort -n " + sam + " " + destiny + filename)
     
-    #temporalFiles(destiny + filename + ".sorted", destiny)
     temporaryFiles.append(destiny + filename + ".bam")
     
     print "BAM file sorted."
