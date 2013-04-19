@@ -1,7 +1,8 @@
 proportional_htseq
 ==================
 
-This script, designed to work under Linux environments, will help you to run htseq-count taking the multihits into account proportionally.
+This script, designed to work under Linux environments, will help you to run htseq-count taking the multihits into account proportionally. 
+Each read will be weighted according to the number of mapped locations. For example, a read mapped to 5 different positions will add 0.2 to the counts of each feature.
 
 Dependencies:
 - samtools 0.1.18 or above (http://samtools.sourceforge.net/)
