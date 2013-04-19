@@ -281,6 +281,8 @@ def runHTSeq (mode, stranded, minaqual, typed, idattr, destiny, sam, gtf, n_hit,
 
         # Move the last file generated to overwrite the one given by htseq
         os.system("mv " + destiny + filename + ".counts2" + " " + destiny + filename + ".counts")
+    else:
+        os.system("mv " + destiny + filename + ".counts" + " " + destiny + "htseq_multihit.counts")
     
     print "HTSeq has finished running."
 
@@ -306,6 +308,7 @@ def run(mode, stranded, minaqual, typed, idattr, sort, destiny, clean, bam, gtf,
     try:
         maxim = detectMaxMultiHits(bam, destiny)
     except:
+        os.system("rm " + destiny + "tmp.tmp.maxNH")
         print "WARNING: Could not detect the maximum number of hits in the mapping file " + bam
         print "HTSeq will be run as unihits"
         maxim = 1
