@@ -293,7 +293,8 @@ def run(mode, stranded, minaqual, typed, idattr, sort, destiny, clean, bam, gtf,
 
     # 3. Get the maximum number of multihits
     try:
-        maxim = detectMaxMultiHits(bam, destiny)
+        # If there's more than 30 multihits, we won't take them into account
+        maxim = min(detectMaxMultiHits(bam, destiny), 30)
     except:
         os.system("rm " + destiny + "tmp.tmp.maxNH")
         print "WARNING: Could not detect the maximum number of hits in the mapping file " + bam
