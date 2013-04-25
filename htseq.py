@@ -194,7 +194,6 @@ def generateNHSam (sam, destiny, n_hit):
     for i in infile:
         if re.search("NH:i:" + str(n_hit) + "[\t\n]", i):
             nuevalinea = i.replace("NH:i:" + str(n_hit), "NH:i:1")
-            out.write(nuevalinea)
 
             l = nuevalinea.split()
             cigar = int(l[1])
